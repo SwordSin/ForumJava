@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.RegisterInfoMapper">
+    <!--    public Account getAcct(Long id); -->
+    <select id="getRegisterInfoList" resultType="com.dao.pojo.RegisterInfo">
+        SELECT user_id,phone,email,AES_DECRYPT(UNHEX(password),'key'),username,net_name FROM register_info
+    </select>
+</mapper>

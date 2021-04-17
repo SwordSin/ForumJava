@@ -1,0 +1,27 @@
+server:
+  port: 8889
+# 配置数据源
+spring:
+  datasource:
+    url: jdbc:mysql://47.114.175.28:3306/userInfo
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+  # redis 配置
+  redis:
+    host: 47.114.175.28
+    port: 6379
+
+  jdbc:
+    template:
+      query-timeout: 5
+
+mybatis:
+  # mybatis 全局配置的值
+  # 如果指定了mybatis的全局配置 , 就不能使用configuration的配置
+#  config-location: classpath:mybatis/mybatis-config.xml
+  # mybatis sql映射文件配置的值
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
