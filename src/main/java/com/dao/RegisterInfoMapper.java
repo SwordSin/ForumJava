@@ -8,4 +8,5 @@ import java.util.List;
 @Mapper
 public interface RegisterInfoMapper {
     public List<RegisterInfo> getRegisterInfoList();
+    public int insertRegisterInfo(RegisterInfo registerInfo);
 }

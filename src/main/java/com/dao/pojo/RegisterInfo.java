@@ -8,6 +8,6 @@ public class RegisterInfo {
     private Long phone;
     private String email;
     private String password;
-    private String username;
     private String netName;
+    private String username;
 }
