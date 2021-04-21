@@ -8,5 +8,6 @@ import java.util.List;
 @Mapper
 public interface RegisterInfoMapper {
     public List<RegisterInfo> getRegisterInfoList();
+    public RegisterInfo getRegisterInfoList(String phone);
     public int insertRegisterInfo(RegisterInfo registerInfo);
 }

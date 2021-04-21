@@ -18,6 +18,10 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
         return registerInfoMapper.getRegisterInfoList();
     }
 
+    public RegisterInfo getAccout(String phone) {
+        return registerInfoMapper.getRegisterInfoList(phone);
+    }
+
     @Override
     public int insertAccount(RegisterInfo registerInfo) {
         return registerInfoMapper.insertRegisterInfo(registerInfo);

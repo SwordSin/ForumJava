@@ -5,11 +5,15 @@
 <mapper namespace="com.dao.RegisterInfoMapper">
     <!--    public Account getAcct(Long id); -->
     <select id="getRegisterInfoList" resultType="com.dao.pojo.RegisterInfo">
-        SELECT user_id,phone,email,AES_DECRYPT(UNHEX(password),'key'),username,net_name FROM register_info
+        SELECT user_id,phone,email,AES_DECRYPT(UNHEX(password),'key') as password,username,net_name FROM register_info
+        <if test="phone != null and phone != ''">
+            where phone = #{phone}
+        </if>
     </select>
     <insert id="insertRegisterInfo" keyProperty="userId" useGeneratedKeys="true" parameterType="com.dao.pojo.RegisterInfo">
         insert into register_info(phone, email, password, username, net_name) values (
             #{phone}, #{email}, HEX(AES_ENCRYPT(#{password}, 'key')), #{username}, #{netName}
         )
     </insert>
+
 </mapper>

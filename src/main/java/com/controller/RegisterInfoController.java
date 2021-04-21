@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/userInfo")
 public class RegisterInfoController {
     @Autowired
     RegisterInfoServiceImpl registerInfoServiceImpl;
@@ -16,6 +17,12 @@ public class RegisterInfoController {
     @GetMapping("/registerInfo")
     public List<RegisterInfo> getAccountList() {
         return registerInfoServiceImpl.getAccoutList();
+    }
+
+    @ResponseBody
+    @GetMapping("/registerInfoOne")
+    public RegisterInfo getAccount(String phone) {
+        return registerInfoServiceImpl.getAccout(phone);
     }
 
     @ResponseBody
@@ -30,4 +37,9 @@ public class RegisterInfoController {
             return result;
         }
     }
+//    @ResponseBody
+//    @GetMapping("/registerInfo")
+//    public List<RegisterInfo> getRegisterInfoList() {
+//
+//    }
 }
