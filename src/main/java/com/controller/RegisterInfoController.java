@@ -3,19 +3,26 @@ package com.controller;
 import com.dao.pojo.RegisterInfo;
 import com.service.impl.RegisterInfoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
+@Component
 @RequestMapping("/userInfo")
 public class RegisterInfoController {
     @Autowired
     RegisterInfoServiceImpl registerInfoServiceImpl;
+    @Autowired
+    StringRedisTemplate stringRedisTemplate;
 
     @ResponseBody
     @GetMapping("/registerInfo")
     public List<RegisterInfo> getAccountList() {
+        ValueOperations<String, String> operations = stringRedisTemplate.opsForValue();
+        System.out.println(operations.get("abc"));
         return registerInfoServiceImpl.getAccoutList();
     }
 

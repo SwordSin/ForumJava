@@ -1,5 +1,5 @@
 server:
-  port: 8889
+  port: 5000
 # 配置数据源
 spring:
   datasource:
@@ -10,7 +10,10 @@ spring:
 
   # redis 配置
   redis:
+#    url: redis://zheng:Abc123456@r-bp1ivsbptgt3l4feukpd.redis.rds.aliyuncs.com:6379
+    # 114.222.230.84
     host: 47.114.175.28
+
     port: 6379
 
   jdbc:

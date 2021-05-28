@@ -1,28 +1,26 @@
 package com.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 
 public class UserController {
-    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    @GetMapping(value = "/user")
     public String getUser(){
         return "get user";
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.POST)
+    @PostMapping(value = "/user")
     public String saveUser(){
         return "POST user";
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.DELETE)
+    @DeleteMapping(value = "/user")
     public String deleteUser(){
         return "DELETE user";
     }
 
-    @RequestMapping(value = "/user", method = RequestMethod.PUT)
+    @PutMapping(value = "/user")
     public String putUser(){
         return "PUT user";
     }

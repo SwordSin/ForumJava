@@ -12,11 +12,11 @@ import org.springframework.context.annotation.ComponentScan;
  * Hello world!
  *
  */
-@SpringBootApplication
+//@SpringBootApplication
 // 等同于
-//@SpringBootConfiguration // 表示配置类
-//@EnableAutoConfiguration //
-//@ComponentScan("com")
+@SpringBootConfiguration // 表示配置类
+@EnableAutoConfiguration //
+@ComponentScan("com")
 public class App 
 {
     public static void main( String[] args )
