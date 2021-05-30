@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.InsertBigDataMapper">
+    <!--    public Account getAcct(Long id); -->
+    <insert id="insertBigData" parameterType="com.dao.pojo.BigDataDO">
+        INSERT INTO big_data(test1,test2,test3,test4,test5,test6) VALUES
+           <foreach collection="list" separator="," item="item">
+               ("a", "b", "c", "d", "c", 12)
+           </foreach>
+    </insert>
+
+    <insert id="insertBigData2" parameterType="com.dao.pojo.BigDataDO">
+        INSERT INTO big_data(test1,test2,test3,test4,test5,test6) VALUES (#{test1}, #{test2}, #{test3}, #{test4}, #{test5}, #{test6})
+    </insert>
+
+</mapper>

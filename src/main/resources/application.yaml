@@ -6,6 +6,7 @@ spring:
     url: jdbc:mysql://47.114.175.28:3306/userInfo
     username: root
     password: 123456
+    # mysql驱动
     driver-class-name: com.mysql.jdbc.Driver
 
   # redis 配置
@@ -27,4 +28,5 @@ mybatis:
   # mybatis sql映射文件配置的值
   mapper-locations: classpath:mybatis/mapper/*.xml
   configuration:
+    # 驼峰映射关系
     map-underscore-to-camel-case: true
