@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.dao.pojo.LoginDataDO;
 import com.dao.pojo.RegisterInfo;
 import com.service.impl.RegisterInfoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Component
@@ -29,7 +31,7 @@ public class RegisterInfoController {
     @ResponseBody
     @GetMapping("/registerInfoOne")
     public RegisterInfo getAccount(String phone) {
-        return registerInfoServiceImpl.getAccout(phone);
+        return registerInfoServiceImpl.getAccoutOne(phone);
     }
 
     @ResponseBody
@@ -44,6 +46,15 @@ public class RegisterInfoController {
             return result;
         }
     }
+
+    // 登录
+    @ResponseBody
+    @PostMapping("/login")
+    public int login(@RequestBody LoginDataDO loingDataDO) {
+        registerInfoServiceImpl.loginVerify(loingDataDO);
+        return 0;
+    }
+
 //    @ResponseBody
 //    @GetMapping("/registerInfo")
 //    public List<RegisterInfo> getRegisterInfoList() {
