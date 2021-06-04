@@ -1,15 +1,19 @@
-package com.controller;
+package com.controller.login;
 
 import com.dao.pojo.LoginDataDO;
 import com.dao.pojo.RegisterInfo;
-import com.service.impl.RegisterInfoServiceImpl;
+import com.service.login.impl.RegisterInfoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Component
@@ -50,9 +54,9 @@ public class RegisterInfoController {
     // 登录
     @ResponseBody
     @PostMapping("/login")
-    public int login(@RequestBody LoginDataDO loingDataDO) {
-        registerInfoServiceImpl.loginVerify(loingDataDO);
-        return 0;
+    public int login(@RequestBody LoginDataDO loingDataDO, HttpServletRequest httpRequest, HttpServletResponse httpServletResponse) {
+        // int state
+        return registerInfoServiceImpl.loginVerify(loingDataDO, httpRequest, httpServletResponse);
     }
 
 //    @ResponseBody

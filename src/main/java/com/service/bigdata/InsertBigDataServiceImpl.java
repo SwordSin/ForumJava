@@ -1,9 +1,7 @@
-package com.service.impl;
+package com.service.bigdata;
 
 import com.dao.InsertBigDataMapper;
 import com.dao.pojo.BigDataDO;
-import com.mysql.cj.xdevapi.SessionFactory;
-import com.service.InsertBigDataService;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -12,7 +10,6 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.Date;

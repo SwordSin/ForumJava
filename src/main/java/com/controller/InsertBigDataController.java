@@ -1,6 +1,6 @@
 package com.controller;
 
-import com.service.impl.InsertBigDataServiceImpl;
+import com.service.bigdata.InsertBigDataServiceImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

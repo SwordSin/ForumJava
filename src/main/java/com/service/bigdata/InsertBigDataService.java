@@ -1,4 +1,4 @@
-package com.service;
+package com.service.bigdata;
 
 import com.dao.pojo.BigDataDO;
 
