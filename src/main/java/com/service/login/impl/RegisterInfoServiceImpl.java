@@ -1,13 +1,12 @@
 package com.service.login.impl;
 
-import com.dao.RegisterInfoMapper;
+import com.dao.forum.RegisterInfoMapper;
 import com.dao.pojo.LoginDataDO;
 import com.dao.pojo.RegisterInfo;
 import com.service.login.RegistryInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.Cookie;
@@ -35,6 +34,7 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
     public RegisterInfo getAccoutOne(String phone) {
         Map<String, Object> map = new HashMap<>();
         map.put("phone", phone);
+//        return registerInfoMapper.selectByMap(map).get(0);
         return registerInfoMapper.selectByMap(map).get(0);
     }
 

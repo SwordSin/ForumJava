@@ -1,7 +1,8 @@
-package com.service.bigdata;
+package com.service.bigdata.impl;
 
-import com.dao.InsertBigDataMapper;
+import com.dao.bigdata.InsertBigDataMapper;
 import com.dao.pojo.BigDataDO;
+import com.service.bigdata.InsertBigDataService;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -22,10 +23,10 @@ public class InsertBigDataServiceImpl implements InsertBigDataService {
     @Autowired
     InsertBigDataMapper insertBigDataMapper;
     @Autowired
-    SqlSessionFactory sqlSessionFactory;
+    SqlSessionFactory sqlSessionFactoryBigData;
 
     @Autowired
-    DataSourceTransactionManager dataSourceTransactionManager;
+    DataSourceTransactionManager transactionManagerBigData;
     @Autowired
     TransactionDefinition transactionDefinition;
 
@@ -43,7 +44,7 @@ public class InsertBigDataServiceImpl implements InsertBigDataService {
     @Override
     public Long insetBigData2(int size) {
         // 开启手动提交事务
-        SqlSession sqlSession = sqlSessionFactory.openSession(ExecutorType.BATCH, false);
+        SqlSession sqlSession = sqlSessionFactoryBigData.openSession(ExecutorType.BATCH, false);
         InsertBigDataMapper getInsertMapper = sqlSession.getMapper(InsertBigDataMapper.class);
         // 获取代码块执行时间
         long a = new Date().getTime();
@@ -77,16 +78,16 @@ public class InsertBigDataServiceImpl implements InsertBigDataService {
     @Override
     public void insetBigDataSpringboot() {
         // 获取事务管理对象
-        TransactionStatus transactionStatus = dataSourceTransactionManager.getTransaction(transactionDefinition);
+        TransactionStatus transactionStatus = transactionManagerBigData.getTransaction(transactionDefinition);
         try {
             // 插入数据
             insertBigDataMapper.insertBigData2(new BigDataDO());
             insertBigDataMapper.insertBigData2(new BigDataDO());
             // 手动提交
-            dataSourceTransactionManager.commit(transactionStatus);
+            transactionManagerBigData.commit(transactionStatus);
         } catch (Exception e) {
             // 回滚事务
-            dataSourceTransactionManager.rollback(transactionStatus);
+            transactionManagerBigData.rollback(transactionStatus);
         }
     }
 

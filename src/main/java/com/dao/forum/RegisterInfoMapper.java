@@ -1,4 +1,4 @@
-package com.dao;
+package com.dao.forum;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.dao.pojo.LoginDataDO;
