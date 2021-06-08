@@ -21,6 +21,7 @@ public class AdminWebConfig implements WebMvcConfigurer {
                 .addPathPatterns("/**")
                 // 不可以被拦截的路由
                 .excludePathPatterns("/userInfo/login")
-                .excludePathPatterns("/dealBigData/getBigData");
+                .excludePathPatterns("/dealBigData/getBigData")
+                .excludePathPatterns("/dealBigData/insetBigData2");
     }
 }

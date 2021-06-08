@@ -95,12 +95,14 @@ public class InsertBigDataServiceImpl implements InsertBigDataService {
         List<BigDataDO> list = new ArrayList<>();
         for (int i = 0;i < size;i++) {
             BigDataDO bigDataDO = new BigDataDO();
-            bigDataDO.setTest1("a");
-            bigDataDO.setTest2("a");
-            bigDataDO.setTest3("a");
-            bigDataDO.setTest4("a");
-            bigDataDO.setTest5("a");
-            bigDataDO.setTest6( (int) Math.floor(Math.random() * 100));
+            bigDataDO.setPrice(100f);
+            bigDataDO.setCommodity("商品" + i);
+            bigDataDO.setCommodityId(1000 + i);
+            bigDataDO.setDiscount(1.9f);
+            bigDataDO.setCostomerId(122l + i);
+            Date d = new Date();
+            bigDataDO.setOrderTime(d);
+            bigDataDO.setPayTime(d);
             list.add(bigDataDO);
         }
         return list;
@@ -109,12 +111,14 @@ public class InsertBigDataServiceImpl implements InsertBigDataService {
 
     public static void main(String[] args) throws InterruptedException {
         // 获取一个随机数
-        System.out.println(Math.floor(Math.random() * 100));
-        System.out.println(Math.ceil(12.3));
-        long a = new Date().getTime();
-        Thread.sleep(1000);
-        long b = new Date().getTime();
-        System.out.println(b - a);
+//        System.out.println(Math.floor(Math.random() * 100));
+//        System.out.println(Math.ceil(12.3));
+//        long a = new Date().getTime();
+//        Thread.sleep(1000);
+//        long b = new Date().getTime();
+//        System.out.println(b - a);
+        float a = 10.1F;
+        System.out.println(a);
     }
 
 }

@@ -79,6 +79,8 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
     public int logout(HttpServletResponse resp) {
         Cookie cookie = new Cookie("JSESSIONID", "");
         cookie.setPath("/");
+        // 设置cookie过期时间
+        cookie.setMaxAge(3600 * 2); // 设置cookie过期时间为2个小时
         resp.addCookie(cookie);
         return 0;
     }

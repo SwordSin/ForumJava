@@ -5,14 +5,15 @@
 <mapper namespace="com.dao.bigdata.InsertBigDataMapper">
     <!--    public Account getAcct(Long id); -->
     <insert id="insertBigData" parameterType="com.dao.pojo.bigdata.BigDataDO">
-        INSERT INTO big_data(test1,test2,test3,test4,test5,test6) VALUES
+        INSERT INTO big_data(costomer_id,commodity,price,order_time,pay_time,discount, commodity_id) VALUES
            <foreach collection="list" separator="," item="item">
-               ("a", "b", "c", "d", "c", 12)
+               (12, "商品a", 100, "2021-06-17 22:46:21" , "2021-06-17 22:46:21", 10, 12)
            </foreach>
     </insert>
 
     <insert id="insertBigData2" parameterType="com.dao.pojo.bigdata.BigDataDO">
-        INSERT INTO big_data(test1,test2,test3,test4,test5,test6) VALUES (#{test1}, #{test2}, #{test3}, #{test4}, #{test5}, #{test6})
+        INSERT INTO big_data(costomer_id,commodity,price,order_time,pay_time,discount, commodity_id)
+            VALUES (#{costomerId}, #{commodity}, #{price}, #{orderTime}, #{payTime}, #{discount}, #{commodityId})
     </insert>
 
 </mapper>
