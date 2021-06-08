@@ -4,17 +4,59 @@ server:
 spring:
   datasource:
     forum:
-      jdbc-url: jdbc:mysql://159.75.4.191:3306/forum_db
+      url: jdbc:mysql://159.75.4.191:3306/forum_db
       username: root
       password: 1234
       # mysql驱动
       driver-class-name: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+#      druid:
+#        # 下面为连接池的补充设置，应用到上面所有数据源中
+#        # 初始化大小，最小，最大
+#        initial-size: 5
+#        min-idle: 5
+#        max-active: 20
+#        # 配置获取连接等待超时的时间
+#        max-wait: 60000
+#        # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+#        time-between-eviction-runs-millis: 60000
+#        # 配置一个连接在池中最小生存的时间，单位是毫秒
+#        min-evictable-idle-time-millis: 300000
+#        #验证连接是否有效。此参数必须设置为非空字符串，下面三项设置成true才能生效
+#        validationQuery: SELECT 1
+#        #指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除.
+#        testWhileIdle: true
+#        #指明是否在从池中取出连接前进行检验,如果检验失败,则从池中去除连接并尝试取出另一个
+#        testOnBorrow: true
+#        #指明是否在归还到池中前进行检验
+#        testOnReturn: false
     bigdata:
-      jdbc-url: jdbc:mysql://159.75.4.191:3306/deal_data
+      url: jdbc:mysql://159.75.4.191:3306/deal_data
       username: root
       password: 1234
       # mysql驱动
       driver-class-name: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+#      druid:
+#        # 下面为连接池的补充设置，应用到上面所有数据源中
+#        # 初始化大小，最小，最大
+#        initial-size: 5
+#        min-idle: 5
+#        max-active: 20
+#        # 配置获取连接等待超时的时间
+#        max-wait: 100000
+#        # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+#        time-between-eviction-runs-millis: 60000
+#        # 配置一个连接在池中最小生存的时间，单位是毫秒
+#        min-evictable-idle-time-millis: 100000
+#        #验证连接是否有效。此参数必须设置为非空字符串，下面三项设置成true才能生效
+#        validationQuery: SELECT 1
+#        #指明连接是否被空闲连接回收器(如果有)进行检验.如果检测失败,则连接将被从池中去除.
+#        testWhileIdle: true
+#        #指明是否在从池中取出连接前进行检验,如果检验失败,则从池中去除连接并尝试取出另一个
+#        testOnBorrow: true
+#        #指明是否在归还到池中前进行检验
+#        testOnReturn: false
 
   # redis 配置
   redis:
