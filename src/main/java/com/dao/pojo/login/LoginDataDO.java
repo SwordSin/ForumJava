@@ -1,4 +1,4 @@
-package com.dao.pojo;
+package com.dao.pojo.login;
 
 import lombok.Data;
 

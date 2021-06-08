@@ -1,11 +1,10 @@
 package com.service.login;
 
-import com.dao.pojo.LoginDataDO;
-import com.dao.pojo.RegisterInfo;
+import com.dao.pojo.login.LoginDataDO;
+import com.dao.pojo.login.RegisterInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 public interface RegistryInfoService {

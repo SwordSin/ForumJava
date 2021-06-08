@@ -4,6 +4,7 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
@@ -29,10 +30,14 @@ public class LoginInterceptoer implements HandlerInterceptor {
         // 判断sessionid是否正确
         System.out.println(request.getContextPath());
         boolean sessionVer = false;
-        for (int i = 0;i < request.getCookies().length;i++) {
-            if (request.getCookies()[i].getName().equals("JSESSIONID")) {
+        Cookie[] cookies = request.getCookies();
+        // 判断是否存在cookie
+        if (cookies == null) return sessionVer;
+
+        for (int i = 0;i < cookies.length;i++) {
+            if (cookies[i].getName().equals("JSESSIONID")) {
                 // cookie中的sessionid和sessionid中的相等
-                if (request.getCookies()[i].getValue().equals(request.getSession().getId())) {
+                if (cookies[i].getValue().equals(request.getSession().getId())) {
                     sessionVer = true;
                     break;
                 }

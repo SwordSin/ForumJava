@@ -1,7 +1,5 @@
 package com.service.bigdata;
 
-import com.dao.pojo.BigDataDO;
-
 import java.util.List;
 import java.util.Map;
 
@@ -17,5 +15,6 @@ public interface InsertBigDataService {
     // 注解方式开启手动提交事务
     // 使用spring boot提供的api手动提交事务
     void insetBigDataSpringboot();
+
 
 }

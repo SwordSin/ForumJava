@@ -1,11 +1,10 @@
-package com.controller;
+package com.controller.bigdata;
 
+import com.dao.pojo.bigdata.BigDataDO;
+import com.service.bigdata.impl.GetBigDataServiceImpl;
 import com.service.bigdata.impl.InsertBigDataServiceImpl;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -15,9 +14,11 @@ import java.util.Map;
 
 @RequestMapping("/dealBigData")
 @Component
-public class InsertBigDataController {
+public class BigDataController {
     @Resource
     InsertBigDataServiceImpl insertBigData;
+    @Resource
+    GetBigDataServiceImpl getBigDataService;
 
     @ResponseBody
     @PutMapping("/insetBigData")
@@ -36,4 +37,9 @@ public class InsertBigDataController {
         return insertBigData.insetBigData2(szie);
     }
 
+    @ResponseBody
+    @GetMapping("/getBigData")
+    public List<BigDataDO> getBigData() {
+        return getBigDataService.getBigDataAll();
+    }
 }

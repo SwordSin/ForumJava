@@ -1,11 +1,9 @@
 package com.dao.forum;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.dao.pojo.LoginDataDO;
-import com.dao.pojo.RegisterInfo;
+import com.dao.pojo.login.LoginDataDO;
+import com.dao.pojo.login.RegisterInfo;
 import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 @Mapper
 public interface RegisterInfoMapper extends BaseMapper<RegisterInfo> {

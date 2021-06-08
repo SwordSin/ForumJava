@@ -1,19 +1,16 @@
 package com.controller.login;
 
-import com.dao.pojo.LoginDataDO;
-import com.dao.pojo.RegisterInfo;
+import com.dao.pojo.login.LoginDataDO;
+import com.dao.pojo.login.RegisterInfo;
 import com.service.login.impl.RegisterInfoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Component

@@ -1,8 +1,8 @@
 package com.service.login.impl;
 
 import com.dao.forum.RegisterInfoMapper;
-import com.dao.pojo.LoginDataDO;
-import com.dao.pojo.RegisterInfo;
+import com.dao.pojo.login.LoginDataDO;
+import com.dao.pojo.login.RegisterInfo;
 import com.service.login.RegistryInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;

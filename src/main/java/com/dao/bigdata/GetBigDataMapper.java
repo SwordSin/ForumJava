@@ -7,8 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 @Mapper
-public interface InsertBigDataMapper extends BaseMapper<BigDataDO> {
-    int insertBigData(List<BigDataDO> bigDataDOS);
-    // 通过批处理
-    int insertBigData2(BigDataDO bigDataDOS);
+public interface GetBigDataMapper extends BaseMapper<BigDataDO> {
+    List<BigDataDO> getAllBigData();
 }

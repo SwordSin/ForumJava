@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.bigdata.GetBigDataMapper">
+    <resultMap id="bigDataResult" type="com.dao.pojo.bigdata.BigDataDO">
+        <result property="id" column="id"></result>
+        <result property="test1" column="test1"></result>
+        <result property="test2" column="test2"></result>
+        <result property="test3" column="test3"></result>
+        <result property="test4" column="test4"></result>
+        <result property="test5" column="test5"></result>
+        <result property="test6" column="test6"></result>
+    </resultMap>
+    <select id="getAllBigData" resultMap="bigDataResult">
+        select * from big_data;
+    </select>
+
+</mapper>

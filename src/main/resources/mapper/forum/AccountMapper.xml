@@ -5,30 +5,16 @@
 <mapper namespace="com.dao.forum.RegisterInfoMapper">
     <!--    public Account getAcct(Long id); -->
 
-<!--    <select id="getRegisterInfoList" resultType="com.dao.pojo.RegisterInfo">-->
-<!--        SELECT user_id,phone,email,AES_DECRYPT(UNHEX(password),'key') as password,username,net_name FROM register_info-->
-<!--    </select>-->
-
-<!--    <select id="getRegisterInfoList" resultType="com.dao.pojo.RegisterInfo" parameterType="java.lang.String">-->
-<!--        SELECT user_id,phone,email,AES_DECRYPT(UNHEX(password),'key') as password,username,net_name FROM register_info-->
-<!--        <if test="phone != null and phone != ''">-->
-<!--            where phone = #{phone}-->
-<!--        </if>-->
-<!--    </select>-->
 
 <!--    去掉password-->
 <!--    AES_DECRYPT(UNHEX(password),'key') as password,-->
-    <select id="getRegisterInfoList" resultType="com.dao.pojo.RegisterInfo" parameterType="com.dao.pojo.LoginDataDO">
+    <select id="getRegisterInfoList" resultType="com.dao.pojo.login.RegisterInfo" parameterType="com.dao.pojo.login.LoginDataDO">
         SELECT user_id,phone,email,username,net_name FROM register_info
         where username = #{username} and  password = HEX(AES_ENCRYPT(#{password}, 'key'))
     </select>
 
-<!--    <select id="getRegisterInfoList" resultType="com.dao.pojo.RegisterInfo" parameterType="com.dao.pojo.LoginDataDO">-->
-<!--        SELECT user_id,phone,email,AES_DECRYPT(UNHEX(password),'key') as password,username,net_name FROM register_info-->
-<!--        WHERE password = HEX(AES_ENCRYPT('admin', 'key'));-->
-<!--    </select>-->
 
-    <insert id="insertRegisterInfo" keyProperty="userId" useGeneratedKeys="true" parameterType="com.dao.pojo.RegisterInfo">
+    <insert id="insertRegisterInfo" keyProperty="userId" useGeneratedKeys="true" parameterType="com.dao.pojo.login.RegisterInfo">
         insert into register_info(phone, email, password, username, net_name) values (
             #{phone}, #{email}, HEX(AES_ENCRYPT(#{password}, 'key')), #{username}, #{netName}
         )

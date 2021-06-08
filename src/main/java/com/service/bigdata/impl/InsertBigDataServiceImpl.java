@@ -1,7 +1,7 @@
 package com.service.bigdata.impl;
 
 import com.dao.bigdata.InsertBigDataMapper;
-import com.dao.pojo.BigDataDO;
+import com.dao.pojo.bigdata.BigDataDO;
 import com.service.bigdata.InsertBigDataService;
 import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
