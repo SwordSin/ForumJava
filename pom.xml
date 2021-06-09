@@ -76,6 +76,21 @@
 <!--        <groupId>org.springframework.boot</groupId>-->
 <!--        <artifactId>spring-boot-maven-plugin</artifactId>-->
 <!--      </plugin>-->
+      <!-- 打包 -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <fork>true</fork>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal> <!-- 将原来的 jar 打入其中 -->
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 </project>

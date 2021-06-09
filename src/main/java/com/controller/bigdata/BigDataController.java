@@ -1,6 +1,7 @@
 package com.controller.bigdata;
 
 import com.dao.pojo.bigdata.BigDataDO;
+import com.service.bigdata.DeleteBigDataService;
 import com.service.bigdata.impl.GetBigDataServiceImpl;
 import com.service.bigdata.impl.InsertBigDataServiceImpl;
 import org.springframework.stereotype.Component;
@@ -19,6 +20,8 @@ public class BigDataController {
     InsertBigDataServiceImpl insertBigData;
     @Resource
     GetBigDataServiceImpl getBigDataService;
+    @Resource
+    DeleteBigDataService deleteBigDataService;
 
     @ResponseBody
     @PutMapping("/insetBigData")
@@ -41,5 +44,16 @@ public class BigDataController {
     @GetMapping("/getBigData")
     public List<BigDataDO> getBigData() {
         return getBigDataService.getBigDataAll();
+    }
+
+    @ResponseBody
+    @DeleteMapping("/deleteBigDataAll")
+    public int deleteBigDataAll() {
+        return deleteBigDataService.deleteBigDataAll();
+    }
+
+
+    public static void main(String[] args) {
+
     }
 }

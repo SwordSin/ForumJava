@@ -19,7 +19,7 @@ import org.springframework.context.annotation.ComponentScan;
 })
 // 等同于
 //@SpringBootConfiguration // 表示配置类
-//@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class }) //
+//@EnableAutoConfiguration(exclude = { DataSourceAutoConfiguration.class }) //
 //@ComponentScan("com")
 public class App 
 {

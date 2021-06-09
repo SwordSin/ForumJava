@@ -1,10 +1,13 @@
+mysqlIp: 159.75.4.191
+redisIp: 159.75.4.191
+
 server:
   port: 5000
 # 配置数据源
 spring:
   datasource:
     forum:
-      url: jdbc:mysql://159.75.4.191:3306/forum_db
+      url: jdbc:mysql://${mysqlIp}:3306/forum_db
       username: root
       password: 1234
       # mysql驱动
@@ -31,7 +34,7 @@ spring:
 #        #指明是否在归还到池中前进行检验
 #        testOnReturn: false
     bigdata:
-      url: jdbc:mysql://159.75.4.191:3306/deal_data
+      url: jdbc:mysql://${mysqlIp}:3306/deal_data
       username: root
       password: 1234
       # mysql驱动
@@ -62,8 +65,7 @@ spring:
   redis:
 #    url: redis://zheng:Abc123456@r-bp1ivsbptgt3l4feukpd.redis.rds.aliyuncs.com:6379
     # 114.222.230.84
-    host: 159.75.4.191
-
+    host: ${redisIp}
     port: 6379
 
   jdbc:
