@@ -7,16 +7,29 @@
 
 
 <!--    去掉password-->
-<!--    AES_DECRYPT(UNHEX(password),'key') as password,-->
+<!--    在mysql中使用加密方式存储读取密码的方式-->
+<!--    <select id="getRegisterInfoList" resultType="com.dao.pojo.login.RegisterInfo" parameterType="com.dao.pojo.login.LoginDataDO">-->
+<!--        SELECT user_id,phone,email,username,net_name FROM register_info-->
+<!--        where username = #{username} and  password = HEX(AES_ENCRYPT(#{password}, 'key'))-->
+<!--    </select>-->
+
+
+<!--    <insert id="insertRegisterInfo" keyProperty="userId" useGeneratedKeys="true" parameterType="com.dao.pojo.login.RegisterInfo">-->
+<!--        insert into register_info(email, password, username, net_name) values (-->
+<!--                                                                                  #{email}, HEX(AES_ENCRYPT(#{password}, 'key')), #{username}, #{netName}-->
+<!--                                                                              )-->
+<!--    </insert>-->
+<!--    这里的insert语句直接把已经加密好的base64字符串存入数据库, 使用的aes加密方式-->
+<!-- mysql 密码的解密方式: select AES_DECRYPT(from_base64(password),'abcdefgabcdefg12') as pw from register_info; -->
     <select id="getRegisterInfoList" resultType="com.dao.pojo.login.RegisterInfo" parameterType="com.dao.pojo.login.LoginDataDO">
-        SELECT user_id,phone,email,username,net_name FROM register_info
-        where username = #{username} and  password = HEX(AES_ENCRYPT(#{password}, 'key'))
+        SELECT user_id,email,username,net_name FROM register_info
+        where username = #{username} and  password = #{password}
     </select>
 
 
     <insert id="insertRegisterInfo" keyProperty="userId" useGeneratedKeys="true" parameterType="com.dao.pojo.login.RegisterInfo">
         insert into register_info(email, password, username, net_name) values (
-            #{email}, HEX(AES_ENCRYPT(#{password}, 'key')), #{username}, #{netName}
+            #{email}, #{password}, #{username}, #{netName}
         )
     </insert>
 

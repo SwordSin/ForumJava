@@ -59,6 +59,19 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
             HttpSession httpSession = req.getSession();
             httpSession.setAttribute("username", registerInfo.getUsername());
             httpSession.setAttribute("password", registerInfo.getPassword());
+            // 查看是否是记住密码
+            if (loginDataDO.getRememberMe() == true) {
+                int time = 3600 * 24 * 30;
+                Cookie user = new Cookie("user", loginDataDO.getUsername());
+                user.setPath("/");
+                user.setMaxAge(time);
+                String passwordstr = loginDataDO.getPassword();
+                Cookie password = new Cookie("password", passwordstr);
+                password.setPath("/");
+                password.setMaxAge(time);
+                resp.addCookie(user);
+                resp.addCookie(password);
+            }
             state = 1;
         } else {
             logout(resp);

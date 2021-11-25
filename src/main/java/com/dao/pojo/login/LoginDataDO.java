@@ -6,5 +6,5 @@ import lombok.Data;
 public class LoginDataDO {
     private String username;
     private String password;
-    private Boolean savePassword;
+    private Boolean rememberMe;
 }

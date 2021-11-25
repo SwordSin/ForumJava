@@ -33,9 +33,10 @@ public class RegisterInfoController {
     // 注册用户
     @ResponseBody
     @PostMapping("/registerInfo")
-    public int saveAccountList(@RequestBody RegisterInfo registerInfo) {
+    public int saveAccountList(@RequestBody RegisterInfo registerInfo, HttpServletRequest httpRequest, HttpServletResponse httpServletResponse) {
         System.out.println(registerInfo);
         int result = registerInfoServiceImpl.insertAccount(registerInfo);
+        System.out.println(httpRequest.getCookies());
         // 如果保存成功, 则返回id最后保存的id值
         if (result == 1) {
             return registerInfo.getUserId();

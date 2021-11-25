@@ -87,3 +87,9 @@ mybatis:
 logging:
   level:
     com.lucifer.springboot.cache.mapper: debug
+
+# 定义密钥
+security:
+  aes:
+    iv: abcdefgabcdefg12
+    key: abcdefgabcdefg12
