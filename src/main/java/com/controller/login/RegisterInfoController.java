@@ -21,6 +21,7 @@ public class RegisterInfoController {
     @Autowired
     StringRedisTemplate stringRedisTemplate;
 
+    // 获取redis中的数据
     @ResponseBody
     @GetMapping("/registerInfo")
     public List<RegisterInfo> getAccountList() {
@@ -29,12 +30,7 @@ public class RegisterInfoController {
         return registerInfoServiceImpl.getAccoutList();
     }
 
-    @ResponseBody
-    @GetMapping("/registerInfoOne")
-    public RegisterInfo getAccount(String phone) {
-        return registerInfoServiceImpl.getAccoutOne(phone);
-    }
-
+    // 注册用户
     @ResponseBody
     @PostMapping("/registerInfo")
     public int saveAccountList(@RequestBody RegisterInfo registerInfo) {
@@ -55,10 +51,4 @@ public class RegisterInfoController {
         // int state
         return registerInfoServiceImpl.loginVerify(loingDataDO, httpRequest, httpServletResponse);
     }
-
-//    @ResponseBody
-//    @GetMapping("/registerInfo")
-//    public List<RegisterInfo> getRegisterInfoList() {
-//
-//    }
 }

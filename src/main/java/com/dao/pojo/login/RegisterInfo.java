@@ -10,8 +10,7 @@ import lombok.Data;
 @TableName("register_info")
 public class RegisterInfo {
     @TableId(value = "user_id", type = IdType.AUTO)
-    private int userId;
-    private Long phone;
+    private Integer userId;
     private String email;
     private String password;
     private String netName;

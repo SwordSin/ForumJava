@@ -9,9 +9,9 @@ spring:
     forum:
       url: jdbc:mysql://${mysqlIp}:3306/forum_db
       username: root
-      password: 1234
-      # mysql驱动
-      driver-class-name: com.mysql.jdbc.Driver
+      password: P!XcewfKwd85Xy0vXo+bbBFqerL3i&SWf~_0KL
+      # mysql驱动 com.mysql.cj.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       type: com.alibaba.druid.pool.DruidDataSource
 #      druid:
 #        # 下面为连接池的补充设置，应用到上面所有数据源中
@@ -36,9 +36,9 @@ spring:
     bigdata:
       url: jdbc:mysql://${mysqlIp}:3306/deal_data
       username: root
-      password: 1234
+      password: P!XcewfKwd85Xy0vXo+bbBFqerL3i&SWf~_0KL
       # mysql驱动
-      driver-class-name: com.mysql.jdbc.Driver
+      driver-class-name: com.mysql.cj.jdbc.Driver
       type: com.alibaba.druid.pool.DruidDataSource
 #      druid:
 #        # 下面为连接池的补充设置，应用到上面所有数据源中
@@ -67,6 +67,7 @@ spring:
     # 114.222.230.84
     host: ${redisIp}
     port: 6379
+    password: eeBG5u4odHOe71ZXQLGtf4G1E+P+
 
   jdbc:
     template:

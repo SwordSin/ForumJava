@@ -1,14 +1,12 @@
 package com.framwork.interceptor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.StringRedisTemplate;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
-
 
 @Component
 public class LoginInterceptoer implements HandlerInterceptor {
@@ -22,9 +20,10 @@ public class LoginInterceptoer implements HandlerInterceptor {
      * @throws Exception
      */
 
-    @Autowired
-    StringRedisTemplate stringRedisTemplate;
+//    @Autowired
+//    StringRedisTemplate stringRedisTemplate;
 
+    // 这段代码是为了防止爬虫类软件的代码, 确保响应的数据能够在一个进行登录请求成功后的会话中
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         // 判断sessionid是否正确
@@ -44,9 +43,5 @@ public class LoginInterceptoer implements HandlerInterceptor {
             }
         }
         return sessionVer;
-    }
-
-    public static void main(String[] args) {
-        System.out.println();
     }
 }

@@ -9,5 +9,4 @@ import org.apache.ibatis.annotations.Mapper;
 public interface RegisterInfoMapper extends BaseMapper<RegisterInfo> {
     public RegisterInfo getRegisterInfoList(LoginDataDO loginDataDO);
     public int insertRegisterInfo(RegisterInfo registerInfo);
-
 }

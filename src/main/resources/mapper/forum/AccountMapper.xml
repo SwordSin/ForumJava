@@ -15,8 +15,8 @@
 
 
     <insert id="insertRegisterInfo" keyProperty="userId" useGeneratedKeys="true" parameterType="com.dao.pojo.login.RegisterInfo">
-        insert into register_info(phone, email, password, username, net_name) values (
-            #{phone}, #{email}, HEX(AES_ENCRYPT(#{password}, 'key')), #{username}, #{netName}
+        insert into register_info(email, password, username, net_name) values (
+            #{email}, HEX(AES_ENCRYPT(#{password}, 'key')), #{username}, #{netName}
         )
     </insert>
 

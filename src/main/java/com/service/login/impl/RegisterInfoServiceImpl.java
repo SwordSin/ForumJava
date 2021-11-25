@@ -31,14 +31,6 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
     }
 
     @Override
-    public RegisterInfo getAccoutOne(String phone) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("phone", phone);
-//        return registerInfoMapper.selectByMap(map).get(0);
-        return registerInfoMapper.selectByMap(map).get(0);
-    }
-
-    @Override
     public int insertAccount(RegisterInfo registerInfo) {
         int state;
         try {
