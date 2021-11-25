@@ -69,6 +69,10 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
                 Cookie password = new Cookie("password", passwordstr);
                 password.setPath("/");
                 password.setMaxAge(time);
+                // 设置网名
+                Cookie netName = new Cookie("password", passwordstr);
+                password.setPath("/");
+                password.setMaxAge(time);
                 resp.addCookie(user);
                 resp.addCookie(password);
             }
