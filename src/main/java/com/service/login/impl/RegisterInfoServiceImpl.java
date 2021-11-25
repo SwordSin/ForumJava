@@ -62,7 +62,7 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
             // 查看是否是记住密码
             if (loginDataDO.getRememberMe() == true) {
                 int time = 3600 * 24 * 30;
-                Cookie user = new Cookie("user", loginDataDO.getUsername());
+                Cookie user = new Cookie("username", loginDataDO.getUsername());
                 user.setPath("/");
                 user.setMaxAge(time);
                 String passwordstr = loginDataDO.getPassword();
