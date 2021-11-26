@@ -1,5 +1,6 @@
 package com.service.login.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.dao.forum.RegisterInfoMapper;
 import com.dao.pojo.login.LoginDataDO;
 import com.dao.pojo.login.RegisterInfo;
@@ -83,6 +84,25 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
         return state;
     }
 
+    // 获取单个记录
+    @Override
+    public RegisterInfo getAccountOne(String resultKey, String queryKey, Object queryValue) {
+//        registerInfoMapper.selectOne()
+//        return registerInfoMapper.selectByMap(map).get(0);
+        // 创建wapper对象
+        QueryWrapper<RegisterInfo> queryWrapper = new QueryWrapper<>();
+        // 构造查询条件
+        queryWrapper.select(resultKey)
+                    .eq(queryKey, queryValue).last("LIMIT 1");
+        return registerInfoMapper.selectOne(queryWrapper);
+
+    }
+
+    @Override
+    public RegisterInfo getAccountOne(QueryWrapper queryWrapper) {
+        return null;
+    }
+
     // 退出登录操作
     @Override
     public int logout(HttpServletResponse resp) {
@@ -93,7 +113,5 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
         resp.addCookie(cookie);
         return 0;
     }
-
-
 
 }

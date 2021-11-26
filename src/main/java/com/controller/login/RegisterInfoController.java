@@ -53,10 +53,9 @@ public class RegisterInfoController {
 
     // 获取昵称
     @ResponseBody
-    @PostMapping("/getNetName")
-    public String getNetName(@RequestBody String username) {
-
-        return null;
+    @GetMapping("/getOneAccountKey")
+    public String getOneAccountKey(String queryKey, String queryValue, String resultKey) {
+        return registerInfoServiceImpl.getAccountOne(resultKey, queryKey, queryValue).getNetName();
     }
 
 }
