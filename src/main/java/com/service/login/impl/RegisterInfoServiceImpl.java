@@ -1,6 +1,7 @@
 package com.service.login.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.common.GetHashImg;
 import com.dao.forum.RegisterInfoMapper;
 import com.dao.pojo.login.LoginDataDO;
 import com.dao.pojo.login.RegisterInfo;
@@ -9,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +26,7 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
     RegisterInfoMapper registerInfoMapper;
     @Autowired
     StringRedisTemplate stringRedisTemplate;
+
     // 获取Account的内容
     @Override
     public List<RegisterInfo> getAccoutList() {
@@ -35,6 +38,9 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
     public int insertAccount(RegisterInfo registerInfo) {
         int state;
         try {
+            // 给registerInfo设置头像
+            String hashImg = GetHashImg.createBase64Avatar(Math.abs(registerInfo.getNetName().hashCode()));
+            registerInfo.setHeadImg(GetHashImg.BASE64_PREFIX + hashImg);
             state = registerInfoMapper.insertRegisterInfo(registerInfo);
         }catch (Exception e) {
             if(e instanceof DuplicateKeyException){

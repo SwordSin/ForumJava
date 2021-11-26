@@ -28,8 +28,8 @@
 
 
     <insert id="insertRegisterInfo" keyProperty="userId" useGeneratedKeys="true" parameterType="com.dao.pojo.login.RegisterInfo">
-        insert into register_info(email, password, username, net_name) values (
-            #{email}, #{password}, #{username}, #{netName}
+        insert into register_info(email, password, username, net_name, head_img) values (
+            #{email}, #{password}, #{username}, #{netName}, #{headImg}
         )
     </insert>
 

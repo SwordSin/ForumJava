@@ -15,4 +15,9 @@ public class RegisterInfo {
     private String password;
     private String netName;
     private String username;
+    private String headImg;
+    private String param1;
+    private String param2;
+    private String param3;
+    private String param4;
 }
