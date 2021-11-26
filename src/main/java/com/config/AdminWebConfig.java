@@ -23,7 +23,7 @@ public class AdminWebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/userInfo/login")
                 .excludePathPatterns("/userInfo/registerInfo")
                 // 临时允许测试用地址
-                .excludePathPatterns("/userInfo/getNetName")
+//                .excludePathPatterns("/userInfo/getNetName")
                 .excludePathPatterns("/dealBigData/getBigData")
                 .excludePathPatterns("/dealBigData/insetBigData2");
     }
