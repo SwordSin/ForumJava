@@ -1,5 +1,6 @@
 package com.dao.pojo.login;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
 @Data

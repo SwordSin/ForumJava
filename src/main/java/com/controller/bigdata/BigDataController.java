@@ -5,6 +5,7 @@ import com.service.bigdata.DeleteBigDataService;
 import com.service.bigdata.impl.GetBigDataServiceImpl;
 import com.service.bigdata.impl.InsertBigDataServiceImpl;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -14,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 @RequestMapping("/dealBigData")
-@Component
+@Controller
 public class BigDataController {
     @Resource
     InsertBigDataServiceImpl insertBigData;
