@@ -21,10 +21,10 @@
 <!--    </insert>-->
 <!--    这里的insert语句直接把已经加密好的base64字符串存入数据库, 使用的aes加密方式-->
 <!-- mysql 密码的解密方式: select AES_DECRYPT(from_base64(password),'abcdefgabcdefg12') as pw from register_info; -->
-    <select id="getRegisterInfoList" resultType="com.dao.pojo.login.RegisterInfo" parameterType="com.dao.pojo.login.LoginDataDO">
-        SELECT user_id,email,username,net_name FROM register_info
-        where username = #{username} and  password = #{password}
-    </select>
+<!--    <select id="getRegisterInfoList" resultType="com.dao.pojo.login.RegisterInfo" parameterType="com.dao.pojo.login.LoginDataDO">-->
+<!--        SELECT * FROM register_info-->
+<!--        where username = #{username} and  password = #{password}-->
+<!--    </select>-->
 
 
     <insert id="insertRegisterInfo" keyProperty="userId" useGeneratedKeys="true" parameterType="com.dao.pojo.login.RegisterInfo">

@@ -1,5 +1,6 @@
 package com.controller.login;
 
+import com.common.ResultWapper;
 import com.dao.pojo.login.LoginDataDO;
 import com.dao.pojo.login.RegisterInfo;
 import com.service.login.impl.RegisterInfoServiceImpl;
@@ -34,20 +35,14 @@ public class RegisterInfoController {
     // 注册用户
     @ResponseBody
     @PostMapping("/registerInfo")
-    public int saveAccountList(@RequestBody RegisterInfo registerInfo, HttpServletRequest httpRequest, HttpServletResponse httpServletResponse) {
-        int result = registerInfoServiceImpl.insertAccount(registerInfo);
-        // 如果保存成功, 则返回id最后保存的id值
-        if (result == 1) {
-            return registerInfo.getUserId();
-        } else {
-            return result;
-        }
+    public ResultWapper<String> saveAccountList(@RequestBody RegisterInfo registerInfo, HttpServletRequest httpRequest, HttpServletResponse httpServletResponse) {
+        return registerInfoServiceImpl.insertAccount(registerInfo);
     }
 
     // 登录
     @ResponseBody
     @PostMapping("/login")
-    public int login(@RequestBody LoginDataDO loingDataDO, HttpServletRequest httpRequest, HttpServletResponse httpServletResponse) {
+    public ResultWapper<RegisterInfo> login(@RequestBody LoginDataDO loingDataDO, HttpServletRequest httpRequest, HttpServletResponse httpServletResponse) {
         // int state
         return registerInfoServiceImpl.loginVerify(loingDataDO, httpRequest, httpServletResponse);
     }

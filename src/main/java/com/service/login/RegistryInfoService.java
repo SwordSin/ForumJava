@@ -1,6 +1,7 @@
 package com.service.login;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.common.ResultWapper;
 import com.dao.pojo.login.LoginDataDO;
 import com.dao.pojo.login.RegisterInfo;
 
@@ -11,8 +12,8 @@ import java.util.Map;
 
 public interface RegistryInfoService {
     public List<RegisterInfo> getAccoutList();
-    public int insertAccount(RegisterInfo registerInfo);
-    public int loginVerify(LoginDataDO loingDataDO, HttpServletRequest httpServletRequest, HttpServletResponse resp);
+    public ResultWapper<String> insertAccount(RegisterInfo registerInfo);
+    public ResultWapper<RegisterInfo> loginVerify(LoginDataDO loingDataDO, HttpServletRequest httpServletRequest, HttpServletResponse resp);
     public int logout(HttpServletResponse resp);
     public RegisterInfo getAccountOne(String resultKey, String queryKey, Object quyeryValue);
     public RegisterInfo getAccountOne(QueryWrapper queryWrapper);

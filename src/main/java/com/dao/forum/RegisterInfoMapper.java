@@ -7,6 +7,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface RegisterInfoMapper extends BaseMapper<RegisterInfo> {
-    public RegisterInfo getRegisterInfoList(LoginDataDO loginDataDO);
+//    public RegisterInfo getRegisterInfoList(LoginDataDO loginDataDO);
     public int insertRegisterInfo(RegisterInfo registerInfo);
 }

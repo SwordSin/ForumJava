@@ -2,6 +2,7 @@ package com.service.login.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.common.GetHashImg;
+import com.common.ResultWapper;
 import com.dao.forum.RegisterInfoMapper;
 import com.dao.pojo.login.LoginDataDO;
 import com.dao.pojo.login.RegisterInfo;
@@ -35,29 +36,41 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
     }
 
     @Override
-    public int insertAccount(RegisterInfo registerInfo) {
-        int state;
+    public ResultWapper<String> insertAccount(RegisterInfo registerInfo) {
+        ResultWapper<String> resultWapper = null;
         try {
             // 给registerInfo设置头像
             String hashImg = GetHashImg.createBase64Avatar(Math.abs(registerInfo.getNetName().hashCode()));
             registerInfo.setHeadImg(GetHashImg.BASE64_PREFIX + hashImg);
-            state = registerInfoMapper.insertRegisterInfo(registerInfo);
+            // 将数据插入到数据库
+            registerInfoMapper.insertRegisterInfo(registerInfo);
+            // 获取userId
+            int userId = registerInfo.getUserId();
+            ResultWapper.getResult(1, Integer.toString(userId));
         }catch (Exception e) {
             if(e instanceof DuplicateKeyException){
                 // 主键重复错误
-                state = -1;
+                ResultWapper.getResult(-1, "主键重复错误");
             }else {
                 // 其他错误
-                state = -2;
+                ResultWapper.getResult(1, "注册发生未知错误");
             }
         }
-        return  state;
+        return  resultWapper;
     }
 
     @Override
-    public int loginVerify(LoginDataDO loginDataDO, HttpServletRequest req, HttpServletResponse resp) {
-        RegisterInfo registerInfo = registerInfoMapper.getRegisterInfoList(loginDataDO);
-        int state = 0;
+    public ResultWapper<RegisterInfo> loginVerify(LoginDataDO loginDataDO, HttpServletRequest req, HttpServletResponse resp) {
+
+        ResultWapper<RegisterInfo> result = null;
+//        RegisterInfo registerInfo = registerInfoMapper.getRegisterInfoList(loginDataDO);
+        // mybatis plus
+        QueryWrapper<RegisterInfo> queryWrapper = new QueryWrapper<>();
+        queryWrapper
+                .select("*")
+                .eq("username", loginDataDO.getUsername())
+                .eq("password", loginDataDO.getPassword());
+        RegisterInfo registerInfo = registerInfoMapper.selectOne(queryWrapper);
         // 如果结果不等于null,则登录成功,写入rediscookie, 返回前端cookie
         // 1. 写入前端cookie
 //        ValueOperations<String, String > valueOperations = stringRedisTemplate.opsForValue();
@@ -84,11 +97,12 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
             password.setMaxAge(time);
             resp.addCookie(user);
             resp.addCookie(password);
-            state = 1;
+            result = ResultWapper.getResult(1, registerInfo);
         } else {
+            result = ResultWapper.getResult(0, null);
             logout(resp);
         }
-        return state;
+        return result;
     }
 
     // 获取单个记录
