@@ -46,7 +46,7 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
             registerInfoMapper.insertRegisterInfo(registerInfo);
             // 获取userId
             int userId = registerInfo.getUserId();
-            ResultWapper.getResult(1, Integer.toString(userId));
+            resultWapper = ResultWapper.getResult(1, Integer.toString(userId));
         }catch (Exception e) {
             if(e instanceof DuplicateKeyException){
                 // 主键重复错误
