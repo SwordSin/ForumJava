@@ -79,24 +79,15 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
             HttpSession httpSession = req.getSession();
             httpSession.setAttribute("username", registerInfo.getUsername());
             httpSession.setAttribute("password", registerInfo.getPassword());
-            // 查看是否是记住密码 记住密码,cookie保存20天, 不记住密码cookie保存1小时
-            int time = 3600;
+            // 查看是否是记住密码 记住密码,cookie保存30天, 不记住密码cookie保存2小时
+            int time = 3600 * 2;
             if (loginDataDO.getRememberMe() == true) {
                 time = 3600 * 24 * 30;
             }
-            Cookie user = new Cookie("username", loginDataDO.getUsername());
-            user.setPath("/");
-            user.setMaxAge(time);
-            String passwordstr = loginDataDO.getPassword();
-            Cookie password = new Cookie("password", passwordstr);
-            password.setPath("/");
-            password.setMaxAge(time);
-            // 设置网名
-            Cookie netName = new Cookie("password", passwordstr);
-            password.setPath("/");
-            password.setMaxAge(time);
-            resp.addCookie(user);
-            resp.addCookie(password);
+            Cookie userPw = new Cookie("username" + loginDataDO.getUsername(), loginDataDO.getPassword());
+            userPw.setPath("/");
+            userPw.setMaxAge(time);
+            resp.addCookie(userPw);
             result = ResultWapper.getResult(1, registerInfo);
         } else {
             result = ResultWapper.getResult(0, null);
