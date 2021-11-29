@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.forum.PostsInfoMapper">
+    <select id="findPostsByPage" parameterType="java.util.Map" resultType="com.dao.pojo.board.PostsInfo" >
+        select  * from posts_info where board_id = #{boardId} limit #{page},#{size}
+    </select>
+    <select id="findUserCount" resultType="long">
+        select count(1) from posts_info
+    </select>
+</mapper>

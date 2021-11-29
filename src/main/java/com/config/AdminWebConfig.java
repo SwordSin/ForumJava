@@ -24,6 +24,9 @@ public class AdminWebConfig implements WebMvcConfigurer {
                 .excludePathPatterns("/userInfo/registerInfo")
                 // 临时允许测试用地址
                 .excludePathPatterns("/board/getBoardInfo")
+                .excludePathPatterns("/board/savePostsInfo")
+                .excludePathPatterns("/board/getPagePostsInfo")
+                .excludePathPatterns("/board/getPostsInfoOne")
                 .excludePathPatterns("/dealBigData/getBigData")
                 .excludePathPatterns("/dealBigData/insetBigData2");
     }
