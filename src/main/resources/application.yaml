@@ -83,10 +83,9 @@ mybatis:
     # 驼峰映射关系
     map-underscore-to-camel-case: true
 
-# 打印mybatis 产生的sql
-logging:
-  level:
-    com.lucifer.springboot.cache.mapper: debug
+#logging:
+#  level:
+#    com.dao.forum: debug # 打印mybatis 产生的sql
 
 # 定义密钥
 security:

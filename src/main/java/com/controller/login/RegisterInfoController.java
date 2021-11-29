@@ -1,6 +1,7 @@
 package com.controller.login;
 
 import com.common.ResultWapper;
+import com.config.LogPrint;
 import com.dao.pojo.login.LoginDataDO;
 import com.dao.pojo.login.RegisterInfo;
 import com.service.login.impl.RegisterInfoServiceImpl;
@@ -24,6 +25,7 @@ public class RegisterInfoController {
     StringRedisTemplate stringRedisTemplate;
 
     // 获取redis中的数据
+    @LogPrint
     @ResponseBody
     @GetMapping("/registerInfo")
     public List<RegisterInfo> getAccountList() {
@@ -33,6 +35,7 @@ public class RegisterInfoController {
     }
 
     // 注册用户
+    @LogPrint
     @ResponseBody
     @PostMapping("/registerInfo")
     public ResultWapper<String> saveAccountList(@RequestBody RegisterInfo registerInfo, HttpServletRequest httpRequest, HttpServletResponse httpServletResponse) {
@@ -40,6 +43,7 @@ public class RegisterInfoController {
     }
 
     // 登录
+    @LogPrint
     @ResponseBody
     @PostMapping("/login")
     public ResultWapper<RegisterInfo> login(@RequestBody LoginDataDO loingDataDO, HttpServletRequest httpRequest, HttpServletResponse httpServletResponse) {
@@ -48,6 +52,7 @@ public class RegisterInfoController {
     }
 
     // 获取昵称
+    @LogPrint
     @ResponseBody
     @GetMapping("/getOneAccountKey")
     public String getOneAccountKey(String queryKey, String queryValue, String resultKey) {

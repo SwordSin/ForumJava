@@ -1,6 +1,7 @@
 package com.controller.board;
 
 import com.common.ResultWapper;
+import com.config.LogPrint;
 import com.dao.pojo.board.BoardInfo;
 import com.dao.pojo.board.PostsInfo;
 import com.dao.pojo.board.PostsPageInfo;
@@ -20,6 +21,7 @@ public class BoardInfoController {
     BoardInfoService boardInfoService;
 
     // 获取board的内容
+    @LogPrint
     @ResponseBody
     @GetMapping("/getBoardInfo")
     public List<BoardInfo> getBoardInfo() {
@@ -27,6 +29,7 @@ public class BoardInfoController {
     }
 
     // 保存帖子内容
+    @LogPrint
     @ResponseBody
     @PostMapping("/savePostsInfo")
     public ResultWapper<String> savePostsInfo(@RequestBody PostsInfo postsInfo) {
@@ -34,6 +37,7 @@ public class BoardInfoController {
     }
 
     // 获取获取分页帖子内容
+    @LogPrint
     @ResponseBody
     @GetMapping("/getPagePostsInfo")
     public ResultWapper<PostsPageInfo<PostsInfo>> getPagePostsInfo(int page, int size, int boardId) {
@@ -41,6 +45,7 @@ public class BoardInfoController {
     }
 
     // 获取单个帖子的内容
+    @LogPrint
     @ResponseBody
     @GetMapping("/getPostsInfoOne")
     public ResultWapper<PostsInfo> getPostInfoOne(int postsId) {
