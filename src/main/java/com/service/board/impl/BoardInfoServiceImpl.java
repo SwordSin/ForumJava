@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +35,10 @@ public class BoardInfoServiceImpl implements BoardInfoService {
 
     @Override
     public ResultWapper<String> savePostsInfo(PostsInfo postsInfo) {
+        Date date = new Date();
+        postsInfo.setModifyDate(date);
+        postsInfo.setPublisDate(date);
+
         int result = postsInfoMapper.insert(postsInfo);
         ResultWapper<String> resultWapper = null;
         if (result == 1) {
