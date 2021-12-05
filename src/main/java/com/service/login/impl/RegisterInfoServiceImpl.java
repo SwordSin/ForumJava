@@ -1,22 +1,30 @@
 package com.service.login.impl;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.common.GetHashImg;
+import com.common.RedisCommon;
 import com.common.ResultWapper;
+import com.dao.forum.LoginLogMapper;
 import com.dao.forum.RegisterInfoMapper;
 import com.dao.pojo.login.LoginDataDO;
+import com.dao.pojo.login.LoginLogDO;
 import com.dao.pojo.login.RegisterInfo;
 import com.service.login.RegistryInfoService;
+import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +32,13 @@ import java.util.Map;
 @Service
 public class RegisterInfoServiceImpl implements RegistryInfoService {
     @Autowired
-    RegisterInfoMapper registerInfoMapper;
+    private RegisterInfoMapper registerInfoMapper;
     @Autowired
-    StringRedisTemplate stringRedisTemplate;
+    private StringRedisTemplate stringRedisTemplate;
+    @Resource
+    private LoginLogMapper loginLogMapper;
+    @Resource
+    private RedisCommon<LoginLogDO> redisCommonLoginDataDo;
 
     // 获取Account的内容
     @Override
@@ -89,6 +101,8 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
             userPw.setMaxAge(time);
             resp.addCookie(userPw);
             result = ResultWapper.getResult(1, registerInfo);
+            // 保存log日志再mysql和redis
+            saveLoginLog(loginDataDO.getUsername(), loginDataDO.getRememberMe(), req);
         } else {
             result = ResultWapper.getResult(0, null);
             logout(resp);
@@ -98,7 +112,7 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
 
     // 获取单个记录
     @Override
-    public RegisterInfo getAccountOne(String resultKey, String queryKey, Object queryValue) {
+    public Object getAccountOne(String resultKey, String queryKey, Object queryValue) {
 //        registerInfoMapper.selectOne()
 //        return registerInfoMapper.selectByMap(map).get(0);
         // 创建wapper对象
@@ -106,13 +120,45 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
         // 构造查询条件
         queryWrapper.select(resultKey)
                     .eq(queryKey, queryValue).last("LIMIT 1");
-        return registerInfoMapper.selectOne(queryWrapper);
+        RegisterInfo registerInfo = registerInfoMapper.selectOne(queryWrapper);
+        // 把该对象转化成map
+        Map<String , Object> registerInfoMap = JSON.parseObject(JSON.toJSONString(registerInfo), new TypeReference<Map<String,Object>>(){});
+        return registerInfoMap.get(resultKey);
 
     }
+
 
     @Override
     public RegisterInfo getAccountOne(QueryWrapper queryWrapper) {
         return null;
+    }
+
+    // 保存登录日志
+    @Override
+    public Integer saveLoginLog(String username, Boolean rememberMe, HttpServletRequest req) {
+
+        LoginLogDO loginLogDO = new LoginLogDO();
+        loginLogDO.setUsername(username);
+        loginLogDO.setRememberMe(rememberMe);
+        loginLogDO.setIp(req.getRemoteAddr());
+        loginLogDO.setLoginDate(new Date());
+        Integer saveStatus = loginLogMapper.insert(loginLogDO);
+        // 判断是否保存成功
+        if (saveStatus == 0) return 0;
+        Long id = loginLogDO.getId();
+        saveStatus = redisCommonLoginDataDo.saveRedis("loginlog:" + id, loginLogDO);
+        return saveStatus;
+    }
+
+    // 获取登录日志
+    @Override
+    public ResultWapper<LoginLogDO> getLoginLog(Long id) {
+        LoginLogDO loginLogDO = redisCommonLoginDataDo.getRedis("loginlog:" + id, LoginLogDO.class);
+        if (loginLogDO == null) {
+            loginLogDO = loginLogMapper.selectById(id);
+        }
+        if (loginLogDO == null) return ResultWapper.getResult(0, loginLogDO);
+        return ResultWapper.getResult(1, loginLogDO);
     }
 
     // 退出登录操作

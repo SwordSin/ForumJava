@@ -3,9 +3,11 @@ package com.dao.pojo.login;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 
+@ApiModel("用户信息")
 @Data
 @TableName("register_info")
 public class RegisterInfo {

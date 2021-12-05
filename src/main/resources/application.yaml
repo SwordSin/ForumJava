@@ -5,6 +5,10 @@ server:
   port: 5000
 # 配置数据源
 spring:
+  # 定义swagger
+  swagger:
+    enabled: true # 生产环境中默认是不开启的
+
   datasource:
     forum:
       url: jdbc:mysql://${mysqlIp}:3306/forum_db
@@ -68,6 +72,14 @@ spring:
     host: ${redisIp}
     port: 6379
     password: eeBG5u4odHOe71ZXQLGtf4G1E+P+
+    lettuce:
+      pool:
+        max-active: 8 # 连接池最大限制, 负数表示没有限制
+        max-wait: -1ms # 连接池最大等待时间
+        max-idle: 9 # 连接池最大空闲时间
+    timeout: 500ms # 链接超时时间
+
+
 
   jdbc:
     template:
