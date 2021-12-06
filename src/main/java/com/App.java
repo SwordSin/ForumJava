@@ -12,7 +12,6 @@ import org.springframework.context.annotation.ComponentScan;
 
 /**
  * Hello world!
- *
  */
 @SpringBootApplication(exclude = {
         DataSourceAutoConfiguration.class

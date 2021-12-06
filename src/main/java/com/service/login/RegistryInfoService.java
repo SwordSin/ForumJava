@@ -19,6 +19,6 @@ public interface RegistryInfoService {
     public Object getAccountOne(String resultKey, String queryKey, Object quyeryValue);
     public RegisterInfo getAccountOne(QueryWrapper queryWrapper);
 
-    public Integer saveLoginLog(String username, Boolean rememberMe, HttpServletRequest req);
+//    public Integer saveLoginLog(String username, Boolean rememberMe, HttpServletRequest req);
     public ResultWapper<LoginLogDO> getLoginLog(Long id);
 }

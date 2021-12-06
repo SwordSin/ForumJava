@@ -11,11 +11,13 @@ import com.dao.forum.RegisterInfoMapper;
 import com.dao.pojo.login.LoginDataDO;
 import com.dao.pojo.login.LoginLogDO;
 import com.dao.pojo.login.RegisterInfo;
+import com.service.AsyncServiceMethods;
 import com.service.login.RegistryInfoService;
 import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -39,6 +41,8 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
     private LoginLogMapper loginLogMapper;
     @Resource
     private RedisCommon<LoginLogDO> redisCommonLoginDataDo;
+    @Autowired
+    private AsyncServiceMethods asyncServiceMethods;
 
     // 获取Account的内容
     @Override
@@ -102,7 +106,7 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
             resp.addCookie(userPw);
             result = ResultWapper.getResult(1, registerInfo);
             // 保存log日志再mysql和redis
-            saveLoginLog(loginDataDO.getUsername(), loginDataDO.getRememberMe(), req);
+            asyncServiceMethods.saveLoginLog(loginDataDO.getUsername(), loginDataDO.getRememberMe(), req);
         } else {
             result = ResultWapper.getResult(0, null);
             logout(resp);
@@ -134,21 +138,21 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
     }
 
     // 保存登录日志
-    @Override
-    public Integer saveLoginLog(String username, Boolean rememberMe, HttpServletRequest req) {
-
-        LoginLogDO loginLogDO = new LoginLogDO();
-        loginLogDO.setUsername(username);
-        loginLogDO.setRememberMe(rememberMe);
-        loginLogDO.setIp(req.getRemoteAddr());
-        loginLogDO.setLoginDate(new Date());
-        Integer saveStatus = loginLogMapper.insert(loginLogDO);
-        // 判断是否保存成功
-        if (saveStatus == 0) return 0;
-        Long id = loginLogDO.getId();
-        saveStatus = redisCommonLoginDataDo.saveRedis("loginlog:" + id, loginLogDO);
-        return saveStatus;
-    }
+//    @Override
+//    @Async
+//    public Integer saveLoginLog(String username, Boolean rememberMe, HttpServletRequest req) {
+//        LoginLogDO loginLogDO = new LoginLogDO();
+//        loginLogDO.setUsername(username);
+//        loginLogDO.setRememberMe(rememberMe);
+//        loginLogDO.setIp(req.getRemoteAddr());
+//        loginLogDO.setLoginDate(new Date());
+//        Integer saveStatus = loginLogMapper.insert(loginLogDO);
+//        // 判断是否保存成功
+//        if (saveStatus == 0) return 0;
+//        Long id = loginLogDO.getId();
+//        saveStatus = redisCommonLoginDataDo.saveRedis("loginlog:" + id, loginLogDO);
+//        return saveStatus;
+//    }
 
     // 获取登录日志
     @Override
