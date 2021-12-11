@@ -107,6 +107,8 @@ public class RegisterInfoServiceImpl implements RegistryInfoService {
             result = ResultWapper.getResult(1, registerInfo);
             // 保存log日志再mysql和redis
             asyncServiceMethods.saveLoginLog(loginDataDO.getUsername(), loginDataDO.getRememberMe(), req);
+            // 将sessionid 保存在redis
+            asyncServiceMethods.saveSessionInRedis(req.getSession().getId(), registerInfo);
         } else {
             result = ResultWapper.getResult(0, null);
             logout(resp);

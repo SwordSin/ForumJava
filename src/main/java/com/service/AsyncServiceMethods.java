@@ -1,5 +1,6 @@
 package com.service;
 
+import com.alibaba.fastjson.JSONObject;
 import com.common.RedisCommon;
 import com.dao.forum.LoginLogMapper;
 import com.dao.pojo.login.LoginLogDO;
@@ -18,6 +19,7 @@ public class AsyncServiceMethods {
     private LoginLogMapper loginLogMapper;
     @Resource
     private RedisCommon<LoginLogDO> redisCommonLoginDataDo;
+
     @Async("scorePoolTaskExecutor")
     public Integer saveLoginLog(String username, Boolean rememberMe, HttpServletRequest req) {
         log.info("多线程添加login日志");
@@ -33,5 +35,14 @@ public class AsyncServiceMethods {
         saveStatus = redisCommonLoginDataDo.saveRedis("loginlog:" + id, loginLogDO);
         return saveStatus;
     }
+
+    @Async("scorePoolTaskExecutor")
+    public Integer saveSessionInRedis(String sessionId, Object obj) {
+        log.info("保存内容");
+
+        return redisCommonLoginDataDo.saveRedisSaveHash("sessionIdHash", sessionId, JSONObject.toJSONString(obj));
+    }
+
+
 
 }

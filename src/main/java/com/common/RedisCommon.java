@@ -2,6 +2,7 @@ package com.common;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
+import io.swagger.models.auth.In;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
@@ -34,4 +35,43 @@ public class RedisCommon<T> {
             return JSONObject.parseObject((String) result, tClass);
         }
     }
+
+    // 保存redi list
+    public Integer saveRedisList(String key, String value) {
+        int isSuccess = 1;
+        try {
+            redisTemplate.opsForList().leftPush(key,value);
+        } catch (Exception e) {
+            isSuccess = 0;
+        }
+        return isSuccess;
+    }
+
+    // 删除redis list
+    public Integer delRedisList(String key, String  value) {
+        int isSuccess = 1;
+        try {
+            redisTemplate.opsForList().remove(key, 0 , value);
+        } catch (Exception e) {
+            isSuccess = 0;
+        }
+        return isSuccess;
+    }
+
+    // 存储hash值
+    public Integer saveRedisSaveHash(String key, String fidle, String value) {
+        int isSuccess = 1;
+        try {
+            redisTemplate.opsForHash().put(key, fidle, value);
+        } catch (Exception e) {
+            isSuccess = 0;
+        }
+        return isSuccess;
+    }
+
+    // 查看某个hash值是否存在
+    public Boolean hasRedisHashKey(String key, String hashKey) {
+        return redisTemplate.opsForHash().hasKey(key, hashKey);
+    }
+
 }

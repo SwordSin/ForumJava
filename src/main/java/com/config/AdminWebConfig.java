@@ -17,10 +17,11 @@ public class AdminWebConfig implements WebMvcConfigurer {
 //    // 添加拦截器的配置
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(loginInterceptoer)
-//                // 需要被拦截的路由
-//                .addPathPatterns("/**")
-//                // 不可以被拦截的路由
+        System.out.println("验证拦截器");
+        registry.addInterceptor(loginInterceptoer)
+                // 需要被拦截的路由
+                .addPathPatterns("/**");
+                // 不可以被拦截的路由
 //                .excludePathPatterns("/userInfo/login")
 //                .excludePathPatterns("/userInfo/registerInfo")
 //                // 临时允许测试用地址
