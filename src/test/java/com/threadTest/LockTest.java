@@ -37,7 +37,6 @@ class TestLock implements  Runnable{
                 } finally {
                     lock.unlock();
                 }
-
         }
     }
 }
