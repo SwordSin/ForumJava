@@ -104,3 +104,5 @@ security:
   aes:
     iv: abcdefgabcdefg12
     key: abcdefgabcdefg12
+
+realIpKey: X-real-ip
