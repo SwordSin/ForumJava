@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,9 @@ public class AsyncServiceMethods {
     private RedisCommon<LoginLogDO> redisCommonLoginDataDo;
     @Value(value = "${realIpKey}")
     private String realIpKey;
+
+    // 发送http请求的模板工具
+    private RestTemplate restTemplate = new RestTemplate();
 
 
     @Async("scorePoolTaskExecutor")
