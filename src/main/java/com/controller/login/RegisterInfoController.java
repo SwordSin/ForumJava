@@ -30,7 +30,7 @@ public class RegisterInfoController {
     // 获取redis中的数据
     @LogPrint
     @ResponseBody
-    @GetMapping("/registerInfo")
+    @GetMapping("/getUserInfoList")
     //说明是什么方法(可以理解为方法注释)
     @ApiOperation(value = "获取用户列表")
     public List<RegisterInfo> getAccountList() {

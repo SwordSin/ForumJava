@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletResponse;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         System.out.println("验证session");
+        System.out.println(request.getRequestURI());
         return true;
 //        System.out.println("验证session");
 //        // 判断sessionid是否正确
