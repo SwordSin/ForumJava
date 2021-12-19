@@ -7,7 +7,7 @@ public class Result <T>{
     // 响应状态码
     private Integer status;
     // 响应内容描述
-    private String statusText;
+    private String desc;
     // 返回的data数据
     private T data;
 
@@ -27,10 +27,10 @@ public class Result <T>{
     }
 
     // 失败, 指定code, msg
-    public static Result fail(Integer status, String statusText) {
+    public static Result fail(Integer status, String desc) {
         Result result = new Result();
         result.setStatus(status);
-        result.setStatusText(statusText);
+        result.setDesc(desc);
         return result;
     }
 
@@ -42,7 +42,7 @@ public class Result <T>{
 
     private void setResultCode(ResultCode resultCode) {
         this.status = resultCode.getStatus();
-        this.statusText = resultCode.getMsg();
+        this.desc = resultCode.getMsg();
     }
 
 }

@@ -3,7 +3,7 @@ package com.common;
 // 对于返回结果的包装类
 public class ResultWapper<T> {
     private Integer status; // 响应状态
-    private String statusText;
+    private String desc;
     private T data; // 响应结果
 
     private ResultWapper(int status, T data) {

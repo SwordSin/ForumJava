@@ -20,10 +20,10 @@ public class AdminWebConfig implements WebMvcConfigurer {
         System.out.println("验证拦截器");
         registry.addInterceptor(loginInterceptoer)
                 // 需要被拦截的路由
-                .addPathPatterns("/**");
+                .addPathPatterns("/**")
                 // 不可以被拦截的路由
-//                .excludePathPatterns("/userInfo/login")
-//                .excludePathPatterns("/userInfo/registerInfo")
+                .excludePathPatterns("/userInfo/login")
+                .excludePathPatterns("/userInfo/registerInfo");
 //                // 临时允许测试用地址
 //                .excludePathPatterns("/board/getBoardInfo")
 //                .excludePathPatterns("/board/savePostsInfo")

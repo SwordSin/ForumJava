@@ -10,11 +10,11 @@ public enum ResultCode {
     USER_NOT_FIND(20002,"用户名不存在");
 
     private Integer status;
-    private String statusText;
+    private String msg;
 
     ResultCode(int status, String statusText) {
         this.status = status;
-        this.statusText = statusText;
+        this.msg = statusText;
     }
 
     public Integer getStatus() {
@@ -22,7 +22,7 @@ public enum ResultCode {
     }
 
     public String getMsg() {
-        return  statusText;
+        return  msg;
     }
 
 }

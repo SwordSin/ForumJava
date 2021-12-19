@@ -43,20 +43,20 @@ public class UnitMethods {
     }
 
     public static void main(String[] args) {
-        String url = "http://api.map.baidu.com/location/ip";
-        Map<String, String> getParam = new HashMap<>();
-        getParam.put("ak", "aXX2aHzly22z6k9YmXeqtBdPDBKEqakA");
-        getParam.put("ip", "60.233.1.30");
-        getParam.put("coor", "bd09ll");
-        HttpRequest httpRequest = HttpRequest.get(url, getParam, Boolean.TRUE);
-        String result = httpRequest.body();
-        UserIpDetailedDO userIpDetailedDO = JSONObject.parseObject(result, UserIpDetailedDO.class);
-        System.out.println(result);
-        System.out.println(userIpDetailedDO);
-        JSONObject jsonObject = (JSONObject) userIpDetailedDO.getContent().get("address_detail");
-        String  city = (String) jsonObject.get("city");
-        Integer cityCode = (Integer) jsonObject.get("city_code");
-        System.out.println(city);
-        System.out.println(cityCode);
+//        String url = "http://api.map.baidu.com/location/ip";
+//        Map<String, String> getParam = new HashMap<>();
+//        getParam.put("ak", "aXX2aHzly22z6k9YmXeqtBdPDBKEqakA");
+//        getParam.put("ip", "60.233.1.30");
+//        getParam.put("coor", "bd09ll");
+//        HttpRequest httpRequest = HttpRequest.get(url, getParam, Boolean.TRUE);
+//        String result = httpRequest.body();
+//        UserIpDetailedDO userIpDetailedDO = JSONObject.parseObject(result, UserIpDetailedDO.class);
+//        System.out.println(result);
+//        System.out.println(userIpDetailedDO);
+//        JSONObject jsonObject = (JSONObject) userIpDetailedDO.getContent().get("address_detail");
+//        String  city = (String) jsonObject.get("city");
+//        Integer cityCode = (Integer) jsonObject.get("city_code");
+//        System.out.println(city);
+//        System.out.println(cityCode);
     }
 }
